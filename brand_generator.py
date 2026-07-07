@@ -1,30 +1,76 @@
 import random
 
-PREFIXES = [
-    "Neo", "Syn", "Nova", "Core", "Meta",
-    "Quantum", "Hyper", "Ultra", "Aero", "Cyber"
-]
+WORDS = {
+    "AI": {
+        "prefix": [
+            "Neo", "Syn", "Cogni", "Agent", "Deep",
+            "Smart", "Auto", "Nova", "Core", "Intel"
+        ],
+        "suffix": [
+            "ra", "ify", "ora", "exa", "ium",
+            "gen", "ica", "lyt", "verse", "ix"
+        ]
+    },
 
-ROOTS = [
-    "Vex", "Nex", "Lux", "Gen", "Mind",
-    "Flow", "Mesh", "Logic", "Pulse", "Byte"
-]
+    "SaaS": {
+        "prefix": [
+            "Cloud", "Flow", "Task", "Sync", "Work",
+            "Stack", "Scale", "Link", "Launch", "Boost"
+        ],
+        "suffix": [
+            "ly", "hub", "pro", "base", "space",
+            "grid", "suite", "desk", "pilot", "logic"
+        ]
+    },
 
-SUFFIXES = [
-    "AI", "X", "IQ", "OS", "Hub",
-    "Labs", "Tech", "Core", "Net", "Cloud"
-]
+    "Cybersecurity": {
+        "prefix": [
+            "Cyber", "Secure", "Shield", "Fort", "Safe",
+            "Guard", "Zero", "Vault", "Cipher", "Trust"
+        ],
+        "suffix": [
+            "lock", "net", "core", "point", "gate",
+            "matrix", "wall", "node", "zone", "sync"
+        ]
+    },
+
+    "Finance": {
+        "prefix": [
+            "Fin", "Pay", "Cash", "Money", "Fund",
+            "Prime", "Capital", "Credit", "Vault", "Coin"
+        ],
+        "suffix": [
+            "flow", "wise", "pilot", "grid", "link",
+            "hub", "base", "logic", "mint", "stack"
+        ]
+    },
+
+    "Healthcare": {
+        "prefix": [
+            "Medi", "Health", "Care", "Bio", "Life",
+            "Well", "Vital", "Nova", "Pure", "Cure"
+        ],
+        "suffix": [
+            "core", "lab", "tech", "care", "plus",
+            "nova", "wise", "path", "link", "sense"
+        ]
+    }
+}
 
 
-def generate_names(count=20):
+def generate_names(industry="AI", count=20):
+
+    words = WORDS.get(industry, WORDS["AI"])
+
     names = set()
 
     while len(names) < count:
+
         name = (
-            random.choice(PREFIXES)
-            + random.choice(ROOTS)
-            + random.choice(SUFFIXES)
+            random.choice(words["prefix"]) +
+            random.choice(words["suffix"])
         )
+
         names.add(name)
 
     return sorted(names)
