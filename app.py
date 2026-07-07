@@ -1,5 +1,5 @@
 import streamlit as st
-import socket
+from domain_checker import check_domain
 
 st.set_page_config(
     page_title="BrandHunter AI",
@@ -8,30 +8,22 @@ st.set_page_config(
 )
 
 st.title("🔎 BrandHunter AI")
-st.write("ابحث عن توفر نطاق .com")
+st.write("فحص توفر النطاقات")
 
-name = st.text_input("اسم العلامة التجارية")
+name = st.text_input("اكتب اسم العلامة التجارية")
 
-def check_domain(domain):
-    try:
-        socket.gethostbyname(domain)
-        return False
-    except:
-        return True
+extensions = [".com", ".ai", ".io", ".app"]
 
 if st.button("بحث"):
-    if name == "":
+    if not name:
         st.warning("اكتب اسمًا أولاً")
     else:
-        domain = name.lower().replace(" ", "") + ".com"
+        clean = name.lower().replace(" ", "")
 
-        with st.spinner("جاري الفحص..."):
-            available = check_domain(domain)
+        for ext in extensions:
+            result = check_domain(clean + ext)
 
-        st.subheader("النتيجة")
-
-        if available:
-            st.success(f"✅ {domain} يبدو غير مرتبط بعنوان IP حاليًا.")
-            st.info("تحقق أيضًا لدى مسجل نطاقات قبل الشراء، لأن هذه الطريقة ليست حاسمة.")
-        else:
-            st.error(f"❌ {domain} مرتبط بعنوان IP، وغالبًا مستخدم.")
+            if result["status"] == "Available":
+                st.success(f"✅ {clean + ext} متاح")
+            else:
+                st.error(f"❌ {clean + ext} مستخدم")
