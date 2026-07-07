@@ -76,6 +76,7 @@ if st.button("بحث"):
         uspto = search_uspto(clean)
 
         st.info(uspto["message"])
+
 st.subheader("⭐ تقييم الاسم")
 
 brand = score_brand(clean)
