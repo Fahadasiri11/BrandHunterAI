@@ -20,7 +20,24 @@ if st.button("بحث"):
         st.warning("اكتب اسمًا أولاً")
     else:
         clean = name.lower().replace(" ", "")
+matches = check_trademark(clean)
 
+st.subheader("🛡️ العلامات التجارية المشابهة")
+
+for item in matches:
+    score = item["score"]
+
+    if score >= 80:
+        risk = "🔴 مرتفعة جداً"
+    elif score >= 60:
+        risk = "🟠 متوسطة"
+    else:
+        risk = "🟢 منخفضة"
+
+    st.write(f"**{item['name']}**")
+    st.write(f"نسبة التشابه: {score}%")
+    st.write(f"مستوى المخاطرة: {risk}")
+    st.divider()
         st.subheader("🌐 النطاقات")
 
         for ext in extensions:
@@ -33,7 +50,7 @@ if st.button("بحث"):
 
         st.subheader("🛡️ العلامة التجارية")
 
-        matches = check_trademark(clean)
+        
 
 for item in matches:
     score = item["score"]
