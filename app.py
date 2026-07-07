@@ -78,3 +78,8 @@ if st.button("بحث"):
             st.write(f"نسبة التشابه: {score}%")
             st.write(f"مستوى المخاطرة: {risk}")
             st.divider()
+st.subheader("🇺🇸 البحث في USPTO")
+
+uspto = search_uspto(clean)
+
+st.info(uspto["message"])
