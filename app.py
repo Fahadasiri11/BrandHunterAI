@@ -40,24 +40,31 @@ st.divider()
 name = st.text_input("اكتب اسم العلامة التجارية")
 
 extensions = [".com", ".ai", ".io", ".app"]
-
 if st.button("بحث"):
 
     if not name:
         st.warning("اكتب اسمًا أولاً")
 
     else:
-
         clean = name.lower().replace(" ", "")
 
+        # فحص النطاقات
+        st.subheader("🌐 النطاقات")
 
+        for ext in extensions:
+            result = check_domain(clean + ext)
 
+            if result["status"] == "Available":
+                st.success(f"✅ {clean + ext} متاح")
+            else:
+                st.error(f"❌ {clean + ext} مستخدم")
+
+        # العلامات التجارية
         st.subheader("🛡️ العلامات التجارية المشابهة")
 
         matches = check_trademark(clean)
 
         for item in matches:
-
             score = item["score"]
 
             if score >= 80:
@@ -72,17 +79,14 @@ if st.button("بحث"):
             st.write(f"مستوى المخاطرة: {risk}")
             st.divider()
 
+        # USPTO
         st.subheader("🇺🇸 البحث في USPTO")
 
         uspto = search_uspto(clean)
 
         st.info(uspto["message"])
-        st.subheader("🇺🇸 البحث في USPTO")
 
-        uspto = search_uspto(clean)
-
-        st.info(uspto["message"])
-
+        # تقييم الاسم
         st.subheader("⭐ تقييم الاسم")
 
         brand = score_brand(clean)
@@ -93,11 +97,13 @@ if st.button("بحث"):
 
         for reason in brand["reasons"]:
             st.success(reason)
-st.subheader("💰 القيمة التقديرية")
 
-value = estimate_brand_value(clean, brand["score"])
+        # القيمة التقديرية
+        st.subheader("💰 القيمة التقديرية")
 
-st.metric(
-    "القيمة المتوقعة",
-    f"${value['min']:,} - ${value['max']:,}"
-)
+        value = estimate_brand_value(clean, brand["score"])
+
+        st.metric(
+            "القيمة المتوقعة",
+            f"${value['min']:,} - ${value['max']:,}"
+        )
