@@ -5,6 +5,7 @@ from brand_generator import generate_names
 from utils import names_to_dataframe
 from services.uspto import search_uspto
 from brand_score import score_brand
+from brand_value import estimate_brand_value
 st.set_page_config(
     page_title="BrandHunter AI",
     page_icon="🔎",
@@ -92,3 +93,11 @@ if st.button("بحث"):
 
         for reason in brand["reasons"]:
             st.success(reason)
+st.subheader("💰 القيمة التقديرية")
+
+value = estimate_brand_value(clean, brand["score"])
+
+st.metric(
+    "القيمة المتوقعة",
+    f"${value['min']:,} - ${value['max']:,}"
+)
