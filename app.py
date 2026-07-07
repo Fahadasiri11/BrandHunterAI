@@ -17,7 +17,7 @@ if st.button("✨ توليد 20 اسمًا جديدًا"):
     with st.spinner("جاري توليد الأسماء وفحص النطاقات..."):
         names = generate_names()
         df = names_to_dataframe(names)
-
+st.write(df)
     st.subheader("💡 الأسماء المقترحة")
     st.dataframe(
         df,
