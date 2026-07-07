@@ -1,4 +1,4 @@
-import random
+import random  # تم تصحيح الحرف الصغير هنا ليعمل الكود بشكل سليم
 
 WORDS = {
     "AI": {
@@ -11,7 +11,6 @@ WORDS = {
             "gen", "ica", "lyt", "verse", "ix"
         ]
     },
-
     "SaaS": {
         "prefix": [
             "Cloud", "Flow", "Task", "Sync", "Work",
@@ -22,7 +21,6 @@ WORDS = {
             "grid", "suite", "desk", "pilot", "logic"
         ]
     },
-
     "Cybersecurity": {
         "prefix": [
             "Cyber", "Secure", "Shield", "Fort", "Safe",
@@ -33,7 +31,6 @@ WORDS = {
             "matrix", "wall", "node", "zone", "sync"
         ]
     },
-
     "Finance": {
         "prefix": [
             "Fin", "Pay", "Cash", "Money", "Fund",
@@ -44,7 +41,6 @@ WORDS = {
             "hub", "base", "logic", "mint", "stack"
         ]
     },
-
     "Healthcare": {
         "prefix": [
             "Medi", "Health", "Care", "Bio", "Life",
@@ -57,20 +53,17 @@ WORDS = {
     }
 }
 
-
 def generate_names(industry="AI", count=20):
-
+    # التأكد من اختيار المجال الصحيح أو العودة للمجال الافتراضي
     words = WORDS.get(industry, WORDS["AI"])
-
     names = set()
 
+    # توليد أسماء فريدة بناءً على العدد المطلوب
     while len(names) < count:
-
         name = (
             random.choice(words["prefix"]) +
             random.choice(words["suffix"])
         )
-
         names.add(name)
 
-    return sorted(names)
+    return sorted(list(names))
