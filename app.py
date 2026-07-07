@@ -76,14 +76,19 @@ if st.button("بحث"):
         uspto = search_uspto(clean)
 
         st.info(uspto["message"])
+        st.subheader("🇺🇸 البحث في USPTO")
 
-st.subheader("⭐ تقييم الاسم")
+        uspto = search_uspto(clean)
 
-brand = score_brand(clean)
+        st.info(uspto["message"])
 
-st.metric("الدرجة", f"{brand['score']}/100")
+        st.subheader("⭐ تقييم الاسم")
 
-st.write(brand["stars"])
+        brand = score_brand(clean)
 
-for reason in brand["reasons"]:
-    st.success(reason)
+        st.metric("الدرجة", f"{brand['score']}/100")
+
+        st.write(brand["stars"])
+
+        for reason in brand["reasons"]:
+            st.success(reason)
