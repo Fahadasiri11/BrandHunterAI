@@ -33,8 +33,19 @@ if st.button("بحث"):
 
         st.subheader("🛡️ العلامة التجارية")
 
-        tm = check_trademark(clean)
+        matches = check_trademark(clean)
 
-        st.write(f"**أقرب علامة:** {tm['closest']}")
-        st.write(f"**نسبة التشابه:** {tm['score']}%")
-        st.write(f"**مستوى المخاطرة:** {tm['risk']}")
+for item in matches:
+    score = item["score"]
+
+    if score >= 80:
+        risk = "🔴 مرتفعة جداً"
+    elif score >= 60:
+        risk = "🟠 متوسطة"
+    else:
+        risk = "🟢 منخفضة"
+
+    st.write(f"**{item['name']}**")
+    st.write(f"نسبة التشابه: {score}%")
+    st.write(f"مستوى المخاطرة: {risk}")
+    st.divider()
