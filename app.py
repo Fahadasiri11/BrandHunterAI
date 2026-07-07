@@ -16,28 +16,13 @@ name = st.text_input("اكتب اسم العلامة التجارية")
 extensions = [".com", ".ai", ".io", ".app"]
 
 if st.button("بحث"):
+
     if not name:
         st.warning("اكتب اسمًا أولاً")
+
     else:
         clean = name.lower().replace(" ", "")
-matches = check_trademark(clean)
 
-st.subheader("🛡️ العلامات التجارية المشابهة")
-
-for item in matches:
-    score = item["score"]
-
-    if score >= 80:
-        risk = "🔴 مرتفعة جداً"
-    elif score >= 60:
-        risk = "🟠 متوسطة"
-    else:
-        risk = "🟢 منخفضة"
-
-    st.write(f"**{item['name']}**")
-    st.write(f"نسبة التشابه: {score}%")
-    st.write(f"مستوى المخاطرة: {risk}")
-    st.divider()
         st.subheader("🌐 النطاقات")
 
         for ext in extensions:
@@ -48,21 +33,22 @@ for item in matches:
             else:
                 st.error(f"❌ {clean + ext} مستخدم")
 
-        st.subheader("🛡️ العلامة التجارية")
 
-        
+        st.subheader("🛡️ العلامات التجارية المشابهة")
 
-for item in matches:
-    score = item["score"]
+        matches = check_trademark(clean)
 
-    if score >= 80:
-        risk = "🔴 مرتفعة جداً"
-    elif score >= 60:
-        risk = "🟠 متوسطة"
-    else:
-        risk = "🟢 منخفضة"
+        for item in matches:
+            score = item["score"]
 
-    st.write(f"**{item['name']}**")
-    st.write(f"نسبة التشابه: {score}%")
-    st.write(f"مستوى المخاطرة: {risk}")
-    st.divider()
+            if score >= 80:
+                risk = "🔴 مرتفعة جداً"
+            elif score >= 60:
+                risk = "🟠 متوسطة"
+            else:
+                risk = "🟢 منخفضة"
+
+            st.write(f"**{item['name']}**")
+            st.write(f"نسبة التشابه: {score}%")
+            st.write(f"مستوى المخاطرة: {risk}")
+            st.divider()
