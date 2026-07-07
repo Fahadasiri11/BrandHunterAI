@@ -11,19 +11,20 @@ st.set_page_config(
 
 st.title("🔎 BrandHunter AI")
 st.write("فحص النطاقات والعلامات التجارية")
-
-name = st.text_input("اكتب اسم العلامة التجارية")
 if st.button("✨ توليد 20 اسمًا جديدًا"):
     with st.spinner("جاري توليد الأسماء وفحص النطاقات..."):
         names = generate_names()
         df = names_to_dataframe(names)
-st.write(df)
+
     st.subheader("💡 الأسماء المقترحة")
+    st.write(df)
+
     st.dataframe(
         df,
         use_container_width=True,
         hide_index=True
     )
+
 extensions = [".com", ".ai", ".io", ".app"]
 
 if st.button("بحث"):
