@@ -1,41 +1,41 @@
-from rapidfuzz import fuzz
+from rapidfuzz import process, fuzz
 
-KNOWN_BRANDS = [
+# قاعدة بيانات مبدئية
+TRADEMARKS = [
     "google",
-    "openai",
     "apple",
     "microsoft",
     "tesla",
     "amazon",
     "meta",
-    "netflix",
-    "samsung",
     "nike",
-    "adidas"
+    "adidas",
+    "samsung",
+    "sony",
+    "openai",
+    "netflix",
+    "spotify",
+    "intel",
+    "nvidia",
+    "coca cola",
+    "pepsi",
+    "toyota",
+    "bmw",
+    "mercedes"
 ]
 
 def check_trademark(name):
-    name = name.lower()
+    result = process.extract(
+        name.lower(),
+        TRADEMARKS,
+        scorer=fuzz.WRatio,
+        limit=5
+    )
 
-    best_score = 0
-    best_match = None
-
-    for brand in KNOWN_BRANDS:
-        score = fuzz.ratio(name, brand)
-
-        if score > best_score:
-            best_score = score
-            best_match = brand
-
-    if best_score >= 90:
-        risk = "مرتفع جداً"
-    elif best_score >= 70:
-        risk = "متوسط"
-    else:
-        risk = "منخفض"
-
-    return {
-        "closest": best_match,
-        "score": best_score,
-        "risk": risk
-    }
+    return [
+        {
+            "name": r[0],
+            "score": round(r[1], 1)
+        }
+        for r in result
+    ]
