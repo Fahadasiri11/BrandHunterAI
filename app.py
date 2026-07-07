@@ -1,7 +1,7 @@
 import streamlit as st
 from domain_checker import check_domain
 from trademark_checker import check_trademark
-
+from brand_generator import generate_names
 st.set_page_config(
     page_title="BrandHunter AI",
     page_icon="🔎",
@@ -12,7 +12,13 @@ st.title("🔎 BrandHunter AI")
 st.write("فحص النطاقات والعلامات التجارية")
 
 name = st.text_input("اكتب اسم العلامة التجارية")
+if st.button("✨ توليد 20 اسمًا جديدًا"):
+    st.subheader("💡 أسماء مقترحة")
 
+    names = generate_names()
+
+    for n in names:
+        st.write("•", n)
 extensions = [".com", ".ai", ".io", ".app"]
 
 if st.button("بحث"):
