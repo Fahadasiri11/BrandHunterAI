@@ -3,7 +3,7 @@ from domain_checker import check_domain
 from trademark_checker import check_trademark
 from brand_generator import generate_names
 from utils import names_to_dataframe
-
+from services.uspto import search_uspto
 st.set_page_config(
     page_title="BrandHunter AI",
     page_icon="🔎",
