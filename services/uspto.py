@@ -4,11 +4,13 @@ engine = SearchEngine()
 
 def search_uspto(brand_name):
     """
-    سيتم ربط هذه الدالة بواجهة USPTO الرسمية لاحقًا.
+    بحث مؤقت - سيتم استبداله بالبحث الحقيقي لاحقًا.
     """
+
     return {
         "source": "USPTO",
-        "success": False,
+        "success": True,
+        "query": brand_name,
         "results": [],
-        "message": "USPTO integration not implemented yet."
+        "message": "لا توجد نتائج حالياً."
     }
