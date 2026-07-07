@@ -19,9 +19,20 @@ st.write("فحص النطاقات والعلامات التجارية")
 # توليد أسماء جديدة
 # ==========================
 
+industry = st.selectbox(
+    "اختر المجال",
+    [
+        "AI",
+        "SaaS",
+        "Cybersecurity",
+        "Finance",
+        "Healthcare"
+    ]
+)
+
 if st.button("✨ توليد 20 اسمًا جديدًا"):
     with st.spinner("جاري توليد الأسماء وفحص النطاقات..."):
-        names = generate_names()
+        names = generate_names(industry, 20)
         df = names_to_dataframe(names)
 
     st.subheader("💡 الأسماء المقترحة")
@@ -30,7 +41,6 @@ if st.button("✨ توليد 20 اسمًا جديدًا"):
         use_container_width=True,
         hide_index=True
     )
-
 st.divider()
 
 # ==========================
