@@ -3,6 +3,7 @@ from domain_checker import check_domain
 from trademark_checker import check_trademark
 from brand_generator import generate_names
 from utils import names_to_dataframe
+
 st.set_page_config(
     page_title="BrandHunter AI",
     page_icon="🔎",
@@ -11,19 +12,30 @@ st.set_page_config(
 
 st.title("🔎 BrandHunter AI")
 st.write("فحص النطاقات والعلامات التجارية")
+
+# ==========================
+# توليد أسماء جديدة
+# ==========================
+
 if st.button("✨ توليد 20 اسمًا جديدًا"):
     with st.spinner("جاري توليد الأسماء وفحص النطاقات..."):
         names = generate_names()
         df = names_to_dataframe(names)
 
     st.subheader("💡 الأسماء المقترحة")
-    st.write(df)
-
     st.dataframe(
         df,
         use_container_width=True,
         hide_index=True
     )
+
+st.divider()
+
+# ==========================
+# البحث عن اسم
+# ==========================
+
+name = st.text_input("اكتب اسم العلامة التجارية")
 
 extensions = [".com", ".ai", ".io", ".app"]
 
@@ -33,11 +45,13 @@ if st.button("بحث"):
         st.warning("اكتب اسمًا أولاً")
 
     else:
+
         clean = name.lower().replace(" ", "")
 
         st.subheader("🌐 النطاقات")
 
         for ext in extensions:
+
             result = check_domain(clean + ext)
 
             if result["status"] == "Available":
@@ -45,12 +59,12 @@ if st.button("بحث"):
             else:
                 st.error(f"❌ {clean + ext} مستخدم")
 
-
         st.subheader("🛡️ العلامات التجارية المشابهة")
 
         matches = check_trademark(clean)
 
         for item in matches:
+
             score = item["score"]
 
             if score >= 80:
