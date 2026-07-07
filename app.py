@@ -32,7 +32,7 @@ industry = st.selectbox(
 
 if st.button("✨ توليد 20 اسمًا جديدًا"):
     with st.spinner("جاري توليد الأسماء وفحص النطاقات..."):
-        names = generate_names(industry, 20)
+     names = generate_names()
         df = names_to_dataframe(names)
 
     st.subheader("💡 الأسماء المقترحة")
