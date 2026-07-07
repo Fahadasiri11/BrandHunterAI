@@ -4,6 +4,7 @@ from trademark_checker import check_trademark
 from brand_generator import generate_names
 from utils import names_to_dataframe
 from services.uspto import search_uspto
+from brand_score import score_brand
 st.set_page_config(
     page_title="BrandHunter AI",
     page_icon="🔎",
