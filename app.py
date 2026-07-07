@@ -48,16 +48,7 @@ if st.button("بحث"):
 
         clean = name.lower().replace(" ", "")
 
-        st.subheader("🌐 النطاقات")
 
-        for ext in extensions:
-
-            result = check_domain(clean + ext)
-
-            if result["status"] == "Available":
-                st.success(f"✅ {clean + ext} متاح")
-            else:
-                st.error(f"❌ {clean + ext} مستخدم")
 
         st.subheader("🛡️ العلامات التجارية المشابهة")
 
@@ -78,8 +69,9 @@ if st.button("بحث"):
             st.write(f"نسبة التشابه: {score}%")
             st.write(f"مستوى المخاطرة: {risk}")
             st.divider()
-st.subheader("🇺🇸 البحث في USPTO")
 
-uspto = search_uspto(clean)
+        st.subheader("🇺🇸 البحث في USPTO")
 
-st.info(uspto["message"])
+        uspto = search_uspto(clean)
+
+        st.info(uspto["message"])
