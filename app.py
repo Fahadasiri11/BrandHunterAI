@@ -14,12 +14,11 @@ st.write("فحص النطاقات والعلامات التجارية")
 
 name = st.text_input("اكتب اسم العلامة التجارية")
 if st.button("✨ توليد 20 اسمًا جديدًا"):
-    st.subheader("💡 أسماء مقترحة")
+    with st.spinner("جاري توليد الأسماء وفحص النطاقات..."):
+        names = generate_names()
+        df = names_to_dataframe(names)
 
-    names = generate_names()
-
-    df = names_to_dataframe(names)
-
+    st.subheader("💡 الأسماء المقترحة")
     st.dataframe(
         df,
         use_container_width=True,
