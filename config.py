@@ -1,0 +1,3 @@
+USPTO_API = ""
+WIPO_API = ""
+TMVIEW_API = ""
