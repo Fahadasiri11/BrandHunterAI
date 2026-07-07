@@ -1,5 +1,6 @@
 import streamlit as st
 from domain_checker import check_domain
+from trademark_checker import check_trademark
 
 st.set_page_config(
     page_title="BrandHunter AI",
@@ -8,7 +9,7 @@ st.set_page_config(
 )
 
 st.title("🔎 BrandHunter AI")
-st.write("فحص توفر النطاقات")
+st.write("فحص النطاقات والعلامات التجارية")
 
 name = st.text_input("اكتب اسم العلامة التجارية")
 
@@ -20,6 +21,8 @@ if st.button("بحث"):
     else:
         clean = name.lower().replace(" ", "")
 
+        st.subheader("🌐 النطاقات")
+
         for ext in extensions:
             result = check_domain(clean + ext)
 
@@ -27,3 +30,11 @@ if st.button("بحث"):
                 st.success(f"✅ {clean + ext} متاح")
             else:
                 st.error(f"❌ {clean + ext} مستخدم")
+
+        st.subheader("🛡️ العلامة التجارية")
+
+        tm = check_trademark(clean)
+
+        st.write(f"**أقرب علامة:** {tm['closest']}")
+        st.write(f"**نسبة التشابه:** {tm['score']}%")
+        st.write(f"**مستوى المخاطرة:** {tm['risk']}")
