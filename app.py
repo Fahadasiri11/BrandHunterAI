@@ -18,13 +18,13 @@ if st.button("✨ توليد 20 اسمًا جديدًا"):
 
     names = generate_names()
 
-df = names_to_dataframe(names)
+    df = names_to_dataframe(names)
 
-st.dataframe(
-    df,
-    use_container_width=True,
-    hide_index=True
-)
+    st.dataframe(
+        df,
+        use_container_width=True,
+        hide_index=True
+    )
 extensions = [".com", ".ai", ".io", ".app"]
 
 if st.button("بحث"):
