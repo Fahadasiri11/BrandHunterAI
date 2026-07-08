@@ -13,7 +13,7 @@ def cached_search_uspto(name):
 @st.cache_data(ttl=3600)
 def cached_check_trademark(name):
  return check_trademark(name)
-    @st.cache_data(ttl=300)
+@st.cache_data(ttl=300)
 def cached_check_domain(domain):
     return check_domain(domain)
 st.set_page_config(
