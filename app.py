@@ -17,13 +17,14 @@ st.set_page_config(
 st.title("🔎 BrandHunter AI")
 st.write("منصتك الذكية لابتكار، فحص، وتقييم النطاقات والعلامات التجارية")
 st.divider()
-
 # ==========================
 # الجزء الأول: توليد أسماء جديدة
 # ==========================
+
 st.header("💡 ابتكار أسماء نطاقات جديدة")
 
 col_input, col_btn = st.columns([3, 1])
+
 with col_input:
     industry = st.selectbox(
         "اختر مجال مشروعك المستقبلي:",
@@ -31,29 +32,32 @@ with col_input:
     )
 
 with col_btn:
-    st.write("#") # موازنة المحاذاة مع القائمة المنسدلة
-    generate_btn = st.button("✨ توليد 20 اسمًا جديدًا", use_container_width=True)
+    st.write("")
+    generate_btn = st.button(
+        "✨ توليد 20 اسمًا جديدًا",
+        use_container_width=True
+    )
 
 if generate_btn:
     with st.spinner("جاري توليد الأسماء وفحص النطاقات..."):
-        # تم إصلاح محاذاة المسافات (Indentation) هنا ليعمل الكود بدون أخطاء
-       names = generate_names(industry, 20)
 
-results = names_to_dataframe(names)
+        names = generate_names(industry, 20)
 
-results = rank_brands(results)
+        results = names_to_dataframe(names)
 
-import pandas as pd
+        results = rank_brands(results)
 
-df = pd.DataFrame(results)
+        import pandas as pd
 
-st.subheader("💡 أفضل الأسماء")
+        df = pd.DataFrame(results)
 
-st.dataframe(
-    df,
-    use_container_width=True,
-    hide_index=True
-) 
+    st.subheader("💡 أفضل الأسماء")
+
+    st.dataframe(
+        df,
+        use_container_width=True,
+        hide_index=True
+    )
 
 st.divider()
 
