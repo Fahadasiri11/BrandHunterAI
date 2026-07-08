@@ -1,22 +1,22 @@
-def estimate_brand_value(name, score):
-    value = 100
+def estimate_brand_value(name, score, domain_available=True):
+    value = 0
 
-    if len(name) <= 8:
-        value += 400
+    # التقييم الأساسي
+    value += score * 80
 
-    if len(name) <= 12:
-        value += 300
+    # الاسم القصير أكثر قيمة
+    if len(name) <= 6:
+        value += 4000
+    elif len(name) <= 8:
+        value += 2500
+    elif len(name) <= 10:
+        value += 1500
 
-    if score >= 90:
-        value += 700
+    # توفر .com
+    if domain_available:
+        value += 3000
 
-    if name.isalpha():
-        value += 300
+    minimum = round(value)
+    maximum = round(value * 3)
 
-    minimum = value
-    maximum = value * 4
-
-    return {
-        "min": minimum,
-        "max": maximum
-    }
+    return minimum, maximum
