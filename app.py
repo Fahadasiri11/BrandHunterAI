@@ -123,22 +123,41 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
                 st.info(uspto["message"])
 
         # --- التبويب الثالث: التقييم المالي والبراند ---
-        with tab_valuation:
-            st.subheader("⭐ تقييم قوة الاسم وتجاريته")
-            brand = score_brand(clean)
-            
-            col_metric1, col_metric2 = st.columns(2)
-            with col_metric1:
-                st.metric("درجة البراند العامة", f"{brand['score']}/100")
-                st.write(brand["stars"])
-            
-            with col_metric2:
-                value = estimate_brand_value(clean, brand["score"])
-                st.metric(
-                    "القيمة السوقية المتوقعة للبيع",
-                    f"${value['min']:,} - ${value['max']:,}"
-                )
-            
-            st.markdown("##### أسباب هذا التقييم:")
-            for reason in brand["reasons"]:
-                st.success(f"• {reason}")
+with tab_valuation:
+    st.subheader("⭐ تقييم قوة الاسم وتجاريته")
+
+    brand = score_brand(clean)
+
+    col_metric1, col_metric2 = st.columns(2)
+
+    with col_metric1:
+        st.metric(
+            "درجة البراند العامة",
+            f"{brand['score']}/100"
+        )
+
+        st.write(brand["stars"])
+
+    with col_metric2:
+
+        # معرفة هل .com متاح
+        domain_result = check_domain(clean + ".com")
+        domain_available = (
+            domain_result["status"] == "Available"
+        )
+
+        min_value, max_value = estimate_brand_value(
+            clean,
+            brand["score"],
+            domain_available
+        )
+
+        st.metric(
+            "💰 القيمة السوقية التقديرية",
+            f"${min_value:,} - ${max_value:,}"
+        )
+
+    st.markdown("##### أسباب هذا التقييم:")
+
+    for reason in brand["reasons"]:
+        st.success(f"• {reason}")
