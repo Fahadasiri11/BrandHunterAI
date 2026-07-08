@@ -149,7 +149,7 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
             with col_metric2:
         
                 # معرفة هل .com متاح
-                domain_result = check_domain domain_result = cached_check_domain(clean + ".com")
+                 domain_result = cached_check_domain(clean + ".com")
                 domain_available = (
                     domain_result["status"] == "Available"
               )
