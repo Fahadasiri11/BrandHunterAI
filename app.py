@@ -37,15 +37,23 @@ with col_btn:
 if generate_btn:
     with st.spinner("جاري توليد الأسماء وفحص النطاقات..."):
         # تم إصلاح محاذاة المسافات (Indentation) هنا ليعمل الكود بدون أخطاء
-        names = generate_names(industry, 20)
-        df = names_to_dataframe(names)
+       names = generate_names(industry, 20)
 
-    st.subheader("📋 الأسماء المقترحة وفرص السوق")
-    st.dataframe(
-        df,
-        use_container_width=True,
-        hide_index=True
-    )
+results = names_to_dataframe(names)
+
+results = rank_brands(results)
+
+import pandas as pd
+
+df = pd.DataFrame(results)
+
+st.subheader("💡 أفضل الأسماء")
+
+st.dataframe(
+    df,
+    use_container_width=True,
+    hide_index=True
+) 
 
 st.divider()
 
