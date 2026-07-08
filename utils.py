@@ -13,10 +13,11 @@ def names_to_dataframe(names):
 
         score = score_brand(name)["score"]
 
-        data.append({
-            "name": name,
-            "domain": domain,
-            "score": score
-        })
-
+     data.append({
+    "Brand": name,
+    ".com": domain,
+    "Score": score,
+    "Stars": score_brand(name)["stars"],
+    "Value": f"${score * 100:,}"
+})   
     return data
