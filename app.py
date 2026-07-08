@@ -10,6 +10,9 @@ from ranker import rank_brands
 @st.cache_data(ttl=3600)
 def cached_search_uspto(name):
     return search_uspto(name)
+@st.cache_data(ttl=3600)
+def cached_check_trademark(name):
+    return check_trademark(name)
 st.set_page_config(
     page_title="BrandHunter AI",
     page_icon="🔎",
@@ -103,7 +106,7 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
             
             with col_tm:
                 st.subheader("🛡️ العلامات التجارية المشابهة")
-                matches = check_trademark(clean)
+                matches = cached_check_trademark(clean)
                 if not matches:
                     st.info("لا توجد علامات تجارية مشابهة مباشرة.")
                 for item in matches:
