@@ -6,7 +6,7 @@ from utils import names_to_dataframe
 from services.uspto import search_uspto
 from brand_score import score_brand
 from brand_value import estimate_brand_value
-
+from ranker import rank_brands
 # إعدادات الصفحة
 st.set_page_config(
     page_title="BrandHunter AI",
