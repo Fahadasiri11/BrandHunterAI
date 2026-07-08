@@ -12,7 +12,10 @@ def cached_search_uspto(name):
     return search_uspto(name)
 @st.cache_data(ttl=3600)
 def cached_check_trademark(name):
-    return check_trademark(name)
+ return check_trademark(name)
+    @st.cache_data(ttl=300)
+def cached_check_domain(domain):
+    return check_domain(domain)
 st.set_page_config(
     page_title="BrandHunter AI",
     page_icon="🔎",
@@ -92,7 +95,7 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
             st.subheader("체 فحص توفر النطاقات الأساسية")
             cols = st.columns(len(extensions))
             for idx, ext in enumerate(extensions):
-                full_domain = clean + ext
+                cached_check_domain(...).
                 result = check_domain(full_domain)
                 with cols[idx]:
                     if result["status"] == "Available":
@@ -146,7 +149,7 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
             with col_metric2:
         
                 # معرفة هل .com متاح
-                domain_result = check_domain(clean + ".com")
+                domain_result = check_domain cached_check_domain(...).
                 domain_available = (
                     domain_result["status"] == "Available"
                 )
