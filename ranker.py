@@ -6,8 +6,8 @@ def rank_brands(results):
     return sorted(
         results,
         key=lambda x: (
-            x["score"],
-            x["domain"] == "✅"
+            x["Score"],
+            x[".com"] == "✅"
         ),
         reverse=True
     )
