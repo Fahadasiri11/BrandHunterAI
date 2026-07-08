@@ -7,7 +7,9 @@ from services.uspto import search_uspto
 from brand_score import score_brand
 from brand_value import estimate_brand_value
 from ranker import rank_brands
-# إعدادات الصفحة
+@st.cache_data(ttl=3600)
+def cached_search_uspto(name):
+    return search_uspto(name)
 st.set_page_config(
     page_title="BrandHunter AI",
     page_icon="🔎",
@@ -119,7 +121,7 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
             
             with col_uspto:
                 st.subheader("🇺🇸 نظام براءات الاختراع الأمريكي (USPTO)")
-                uspto = search_uspto(clean)
+                uspto = cached_search_uspto(clean)
                 st.info(uspto["message"])
 
         # --- التبويب الثالث: التقييم المالي والبراند ---
