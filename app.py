@@ -7,13 +7,13 @@ from services.uspto import search_uspto
 from brand_score import score_brand
 from brand_value import estimate_brand_value
 from ranker import rank_brands
-@st.cache_data(ttl=3600)
+#@st.cache_data(ttl=3600)
 def cached_search_uspto(name):
     return search_uspto(name)
-@st.cache_data(ttl=3600)
+#@st.cache_data(ttl=3600)
 def cached_check_trademark(name):
  return check_trademark(name)
-@st.cache_data(ttl=300)
+#@st.cache_data(ttl=300)
 def cached_check_domain(domain):
     return check_domain(domain)
 st.set_page_config(
