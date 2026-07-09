@@ -58,7 +58,13 @@ if generate_btn:
         import pandas as pd
 
         df = pd.DataFrame(results)
+sort_by = st.selectbox(
+    "ترتيب حسب",
+    ["Score", "Brand", ".com"]
+)
 
+ascending = sort_by == "Brand"
+df = df.sort_values(by=sort_by, ascending=ascending)
     st.subheader("💡 أفضل الأسماء")
 
     st.dataframe(
