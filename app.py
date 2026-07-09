@@ -92,18 +92,17 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
 
         # --- التبويب الأول: النطاقات ---
         with tab_domains:
-            st.subheader("체 فحص توفر النطاقات الأساسية")
-            cols = st.columns(len(extensions))
-for idx, ext in enumerate(extensions):
-    full_domain = clean + ext
-    result = cached_check_domain(full_domain)
+    cols = st.columns(len(extensions))
 
-    with cols[idx]:
-        ...              
-        if result["status"] == "Available":
-                        st.success(f"✅ {full_domain}\n\n**متاح للتسجيل**")
-                    else:
-                        st.error(f"❌ {full_domain}\n\n**مستعمل حالياً**")
+    for idx, ext in enumerate(extensions):
+        full_domain = clean + ext
+        result = cached_check_domain(full_domain)
+
+        with cols[idx]:
+            if result["status"] == "Available":
+                st.success(f"✅ {full_domain}\n\nمتاح")
+            else:
+                st.error(f"❌ {full_domain}\n\nمستخدم")
 
         # --- التبويب الثاني: العلامات التجارية والـ USPTO ---
         with tab_legal:
