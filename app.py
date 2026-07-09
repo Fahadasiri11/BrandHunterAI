@@ -71,7 +71,7 @@ ascending = sort_by == "Brand"
 df = df.sort_values(by=sort_by, ascending=ascending)
 st.subheader("💡 أفضل الأسماء")
 
-    st.dataframe(
+st.dataframe(
         df,
         use_container_width=True,
         hide_index=True
