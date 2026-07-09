@@ -84,7 +84,7 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
         clean = name.lower().replace(" ", "")
 
         # تقسيم النتائج إلى تبويبات (Tabs) لتنظيم الواجهة ومنع تشتت المستخدم
-                tab_domains, tab_legal, tab_valuation = st.tabs([
+        tab_domains, tab_legal, tab_valuation = st.tabs([
             "🌐 توفر النطاقات (Domains)",
             "🛡️ الحماية القانونية والعلامات",
             "📊 التقييم والقيمة التقديرية"
