@@ -84,89 +84,60 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
         clean = name.lower().replace(" ", "")
 
         # تقسيم النتائج إلى تبويبات (Tabs) لتنظيم الواجهة ومنع تشتت المستخدم
-        tab_domains, tab_legal, tab_valuation = st.tabs([
-            "🌐 توفر النطاقات (Domains)", 
-            "🛡️ الحماية القانونية والعلامات", 
+                tab_domains, tab_legal, tab_valuation = st.tabs([
+            "🌐 توفر النطاقات (Domains)",
+            "🛡️ الحماية القانونية والعلامات",
             "📊 التقييم والقيمة التقديرية"
         ])
 
-        # --- التبويب الأول: النطاقات ---
         with tab_domains:
-    cols = st.columns(len(extensions))
+            cols = st.columns(len(extensions))
+            for idx, ext in enumerate(extensions):
+                full_domain = clean + ext
+                result = cached_check_domain(full_domain)
 
-    for idx, ext in enumerate(extensions):
-        full_domain = clean + ext
-        result = cached_check_domain(full_domain)
+                with cols[idx]:
+                    if result["status"] == "Available":
+                        st.success(f"✅ {full_domain}\n\nمتاح للتسجيل")
+                    else:
+                        st.error(f"❌ {full_domain}\n\nمستخدم حالياً")
 
-        with cols[idx]:
-            if result["status"] == "Available":
-                st.success(f"✅ {full_domain}\n\nمتاح للتسجيل")
-            else:
-                st.error(f"❌ {full_domain}\n\nمستخدم حالياً")
-
-        # --- التبويب الثاني: العلامات التجارية والـ USPTO ---
         with tab_legal:
             col_tm, col_uspto = st.columns(2)
-            
+
             with col_tm:
-                st.subheader("🛡️ العلامات التجارية المشابهة")
                 matches = cached_check_trademark(clean)
                 if not matches:
                     st.info("لا توجد علامات تجارية مشابهة مباشرة.")
-                for item in matches:
-                    score = item["score"]
-                    if score >= 80:
-                        risk = "🔴 مرتفعة جداً"
-                    elif score >= 60:
-                        risk = "🟠 متوسطة"
-                    else:
-                        risk = "🟢 منخفضة"
-                    
-                    st.markdown(f"**الاسم:** {item['name']} | **التشابه:** {score}%")
-                    st.caption(f"مستوى المخاطرة: {risk}")
-                    st.write("---")
-            
+                else:
+                    for item in matches:
+                        st.write(f"**{item['name']}** — تشابه {item['score']}%")
+
             with col_uspto:
-                st.subheader("🇺🇸 نظام براءات الاختراع الأمريكي (USPTO)")
                 uspto = cached_search_uspto(clean)
                 st.info(uspto["message"])
 
-        # --- التبويب الثالث: التقييم المالي والبراند ---
         with tab_valuation:
-            st.subheader("⭐ تقييم قوة الاسم وتجاريته")
-        
             brand = score_brand(clean)
-        
-            col_metric1, col_metric2 = st.columns(2)
-        
-            with col_metric1:
-                st.metric(
-                    "درجة البراند العامة",
-                    f"{brand['score']}/100"
-                )
-        
+
+            c1, c2 = st.columns(2)
+
+            with c1:
+                st.metric("درجة البراند العامة", f"{brand['score']}/100")
                 st.write(brand["stars"])
-        
-            with col_metric2:
-        
-                # معرفة هل .com متاح
+
+            with c2:
                 domain_result = cached_check_domain(clean + ".com")
-                domain_available = (
-                    domain_result["status"] == "Available"
-              )
-        
+                domain_available = domain_result["status"] == "Available"
+
                 min_value, max_value = estimate_brand_value(
-                    clean,
-                    brand["score"],
-                    domain_available
+                    clean, brand["score"], domain_available
                 )
-        
+
                 st.metric(
                     "💰 القيمة السوقية التقديرية",
                     f"${min_value:,} - ${max_value:,}"
                 )
-        
-            st.markdown("##### أسباب هذا التقييم:")
-        
+
             for reason in brand["reasons"]:
                 st.success(f"• {reason}")
