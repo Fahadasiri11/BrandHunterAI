@@ -58,7 +58,10 @@ if generate_btn:
         import pandas as pd
 
         df = pd.DataFrame(results)
-
+if generate_btn:
+    with st.spinner(...):
+        ...
+        df = pd.DataFrame(results)
     st.subheader("💡 أفضل الأسماء")
 
     st.dataframe(
