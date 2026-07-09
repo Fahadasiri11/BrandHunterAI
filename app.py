@@ -55,18 +55,13 @@ if generate_btn:
 
         results = rank_brands(results)
 
-import pandas as pd
-df = pd.DataFrame(results)
-sort_by = st.selectbox(
-    "ترتيب حسب",
-    ["Score", "Brand", ".com"]
-)
+        import pandas as pd
 
-ascending = sort_by == "Brand"
-df = df.sort_values(by=sort_by, ascending=ascending)
-st.subheader("💡 أفضل الأسماء")
+        df = pd.DataFrame(results)
 
-st.dataframe(
+    st.subheader("💡 أفضل الأسماء")
+
+    st.dataframe(
         df,
         use_container_width=True,
         hide_index=True
