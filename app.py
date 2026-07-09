@@ -55,8 +55,7 @@ if generate_btn:
 
         results = rank_brands(results)
 
-        import pandas as pd
-
+import pandas as pd
 df = pd.DataFrame(results)
 sort_by = st.selectbox(
     "ترتيب حسب",
