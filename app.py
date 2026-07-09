@@ -62,7 +62,7 @@ if generate_btn:
     with st.spinner(...):
         ...
         df = pd.DataFrame(results)
- sort_by = st.selectbox(
+sort_by = st.selectbox(
     "ترتيب حسب",
     ["Score", "Brand", ".com"]
 )
