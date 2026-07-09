@@ -2,7 +2,7 @@ import pandas as pd
 from domain_checker import check_domain
 from brand_score import score_brand
 from brand_value import estimate_brand_value
-from concurrent.futures import names_to_dataframe
+from concurrent.futures import ThreadPoolExecutor
 def process_name(name):
     result = check_domain(name.lower() + ".com")
     domain = "✅" if result["status"] == "Available" else "❌"
