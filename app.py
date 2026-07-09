@@ -95,8 +95,8 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
             st.subheader("체 فحص توفر النطاقات الأساسية")
             cols = st.columns(len(extensions))
             for idx, ext in enumerate(extensions):
-                domain_result = cached_check_domain(clean + ".com")
-                result = check_domain(full_domain)
+                full_domain = clean + ext
+result = cached_check_domain(full_domain)
                 with cols[idx]:
                     if result["status"] == "Available":
                         st.success(f"✅ {full_domain}\n\n**متاح للتسجيل**")
@@ -149,7 +149,7 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
             with col_metric2:
         
                 # معرفة هل .com متاح
-                 domain_result = cached_check_domain(clean + ".com")
+                domain_result = cached_check_domain(clean + ".com")
                 domain_available = (
                     domain_result["status"] == "Available"
               )
