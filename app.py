@@ -91,7 +91,7 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
         ])
 
         # --- التبويب الأول: النطاقات ---
-        with tab_domains:
+with tab_domains:
     cols = st.columns(len(extensions))
 
     for idx, ext in enumerate(extensions):
@@ -100,9 +100,9 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
 
         with cols[idx]:
             if result["status"] == "Available":
-                st.success(f"✅ {full_domain}\n\nمتاح")
+                st.success(f"✅ {full_domain}\n\nمتاح للتسجيل")
             else:
-                st.error(f"❌ {full_domain}\n\nمستخدم")
+                st.error(f"❌ {full_domain}\n\nمستخدم حالياً")
 
         # --- التبويب الثاني: العلامات التجارية والـ USPTO ---
         with tab_legal:
