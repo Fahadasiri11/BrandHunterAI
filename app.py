@@ -91,7 +91,7 @@ if st.button("بدء عملية الفحص الشامل 🚀", use_container_wid
         ])
 
         # --- التبويب الأول: النطاقات ---
-                          with tab_domains:
+        with tab_domains:
     cols = st.columns(len(extensions))
 
     for idx, ext in enumerate(extensions):
