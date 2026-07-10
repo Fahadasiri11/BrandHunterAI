@@ -65,7 +65,7 @@ if generate_btn:
 
 ascending = sort_by == "Brand"
 df = df.sort_values(by=sort_by, ascending=ascending)
-    st.subheader("💡 أفضل الأسماء")
+       st.subheader("💡 أفضل الأسماء")
 
     st.dataframe(
         df,
