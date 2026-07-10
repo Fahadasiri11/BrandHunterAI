@@ -58,9 +58,9 @@ if generate_btn:
         import pandas as pd
 
         df = pd.DataFrame(results)
-  sort_by = st.selectbox(
-    "ترتيب حسب",
-    ["Score", "Brand", ".com"]
+        sort_by = st.selectbox(
+       "ترتيب حسب",
+       ["Score", "Brand", ".com"]
 )
 
 ascending = sort_by == "Brand"
