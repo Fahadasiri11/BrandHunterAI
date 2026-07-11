@@ -63,7 +63,7 @@ if generate_btn:
        ["Score", "Brand", ".com"]
 )
 
-ascending = sort_by == "Brand"
+    ascending = sort_by == "Brand"
 df = df.sort_values(by=sort_by, ascending=ascending)
 st.subheader("💡 أفضل الأسماء")
 
