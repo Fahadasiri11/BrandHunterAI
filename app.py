@@ -56,11 +56,11 @@ if generate_btn:
         df = pd.DataFrame(results)
 
     show_only_available = st.checkbox("عرض الأسماء ذات نطاق .com المتاح فقط")
-
     if show_only_available:
-        min_score = st.slider("الحد الأدنى للدرجة", 0, 100, 0)
-    df = df[df["Score"] >= min_score]
         df = df[df[".com"] == "✅"]
+
+    min_score = st.slider("الحد الأدنى للدرجة", 0, 100, 0)
+    df = df[df["Score"] >= min_score]
 
     st.subheader("💡 أفضل الأسماء")
     st.dataframe(df, use_container_width=True, hide_index=True)
