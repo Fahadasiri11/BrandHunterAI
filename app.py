@@ -48,20 +48,20 @@ with col_btn:
 
 if generate_btn:
     with st.spinner("جاري توليد الأسماء وفحص النطاقات..."):
-
         names = generate_names(industry, 20)
-
         results = names_to_dataframe(names)
-
         results = rank_brands(results)
 
         import pandas as pd
-
         df = pd.DataFrame(results)
-show_only_available = st.checkbox("عرض الأسماء ذات نطاق .com المتاح فقط")
 
-if show_only_available:
-    df = df[df[".com"] == "✅"]
+    show_only_available = st.checkbox("عرض الأسماء ذات نطاق .com المتاح فقط")
+
+    if show_only_available:
+        df = df[df[".com"] == "✅"]
+
+    st.subheader("💡 أفضل الأسماء")
+    st.dataframe(df, use_container_width=True, hide_index=True)
     st.subheader("💡 أفضل الأسماء")
 
     st.dataframe(
