@@ -62,9 +62,9 @@ if generate_btn:
 
     st.subheader("💡 أفضل الأسماء")
     st.dataframe(df, use_container_width=True, hide_index=True)
-    st.subheader("💡 أفضل الأسماء")
+    #st.subheader("💡 أفضل الأسماء")
 
-        #st.dataframe(
+    st.dataframe(
         df,
         use_container_width=True,
         hide_index=True
