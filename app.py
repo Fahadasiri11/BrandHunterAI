@@ -62,11 +62,8 @@ if generate_btn:
     min_score = st.slider("الحد الأدنى للدرجة", 0, 100, 0)
     df = df[df["Score"] >= min_score]
 
-
-
-st.subheader("💡 أفضل الأسماء")
-st.dataframe(df, use_container_width=True, hide_index=True)
-
+    st.subheader("💡 أفضل الأسماء")
+    st.dataframe(df, use_container_width=True, hide_index=True)
 
 
 st.divider()
