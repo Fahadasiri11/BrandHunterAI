@@ -13,13 +13,15 @@ def process_name(name):
         name, brand["score"], domain == "✅"
     )
 
-    return {
-        "Brand": name,
-        ".com": domain,
-        "Score": brand["score"],
-        "Stars": brand["stars"],
-        "Value": f"${min_value:,} - ${max_value:,}",
-    }
+    is_short = "✅" if len(name) <= 8 else "❌"
+return {
+    "Brand": name,
+    ".com": domain,
+    "Short": is_short,
+    "Score": brand["score"],
+    "Stars": brand["stars"],
+    "Value": f"${min_value:,} - ${max_value:,}",
+}
 
 
 def names_to_dataframe(names):
