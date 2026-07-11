@@ -13,7 +13,7 @@ def process_name(name):
         name, brand["score"], domain == "✅"
     )
 
-      is_short = "✅" if len(name) <= 8 else "❌"
+    is_short = "✅" if len(name) <= 8 else "❌"
 
     return {
         "Brand": name,
