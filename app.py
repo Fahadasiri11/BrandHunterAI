@@ -58,7 +58,10 @@ if generate_btn:
         import pandas as pd
 
         df = pd.DataFrame(results)
+show_only_available = st.checkbox("عرض الأسماء ذات نطاق .com المتاح فقط")
 
+if show_only_available:
+    df = df[df[".com"] == "✅"]
     st.subheader("💡 أفضل الأسماء")
 
     st.dataframe(
