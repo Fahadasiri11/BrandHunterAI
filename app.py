@@ -62,7 +62,7 @@ if generate_btn:
     min_score = st.slider("الحد الأدنى للدرجة", 0, 100, 0)
     df = df[df["Score"] >= min_score]
 
-csv = df.to_csv(index=False).encode("utf-8-sig")
+ csv = df.to_csv(index=False).encode("utf-8-sig")
 
 st.download_button(
     "📥 تنزيل النتائج CSV",
