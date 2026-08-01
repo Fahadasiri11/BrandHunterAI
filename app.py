@@ -56,11 +56,13 @@ if generate_btn:
         df = pd.DataFrame(results)
 
     show_only_available = st.checkbox("عرض الأسماء ذات نطاق .com المتاح فقط")
+
     if show_only_available:
         df = df[df[".com"] == "✅"]
 
     min_score = st.slider("الحد الأدنى للدرجة", 0, 100, 0)
     df = df[df["Score"] >= min_score]
+
     csv = df.to_csv(index=False).encode("utf-8-sig")
 
     st.download_button(
@@ -72,12 +74,12 @@ if generate_btn:
 
     st.subheader("💡 أفضل الأسماء")
     st.dataframe(
-    df,
-    use_container_width=True,
-    hide_index=True,
-)
+        df,
+        use_container_width=True,
+        hide_index=True,
+    )
 
-st.success(f"✅ تم العثور على {len(df)} اسمًا مطابقًا للفلاتر")
+    st.success(f"✅ تم العثور على {len(df)} اسمًا مطابقًا للفلاتر")
 
 st.divider()
 
