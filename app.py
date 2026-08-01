@@ -69,8 +69,8 @@ st.download_button(
     file_name="brand_results.csv",
     mime="text/csv",
 )
-    st.subheader("💡 أفضل الأسماء")
-    st.dataframe(df, use_container_width=True, hide_index=True)
+st.subheader("💡 أفضل الأسماء")
+st.dataframe(df, use_container_width=True, hide_index=True)
 
 
 st.divider()
