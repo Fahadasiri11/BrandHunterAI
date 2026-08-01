@@ -62,8 +62,10 @@ if generate_btn:
 
     min_score = st.slider("الحد الأدنى للدرجة", 0, 100, 0)
     show_short_only = st.checkbox("عرض الأسماء القصيرة فقط")
-    df = df[df["Score"] >= min_score]
-    if show_short_only:
+
+df = df[df["Score"] >= min_score]
+
+if show_short_only:
     df = df[df["Short"] == "✅"]
     csv = df.to_csv(index=False).encode("utf-8-sig")
 
