@@ -53,7 +53,7 @@ if generate_btn:
         results = rank_brands(results)
 
     import pandas as pd
-        df = pd.DataFrame(results)
+    df = pd.DataFrame(results)
 
     show_only_available = st.checkbox("عرض الأسماء ذات نطاق .com المتاح فقط")
 
