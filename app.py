@@ -52,8 +52,8 @@ if generate_btn:
         results = names_to_dataframe(names, industry)
         results = rank_brands(results)
 
-    import pandas as pd
-    df = pd.DataFrame(results)
+        import pandas as pd
+        df = pd.DataFrame(results)
 
     show_only_available = st.checkbox("عرض الأسماء ذات نطاق .com المتاح فقط")
 
@@ -68,6 +68,27 @@ if generate_btn:
     if show_short_only:
         df = df[df["Short"] == "✅"]
 
+    columns = [
+        "AI Pick",
+        "Brand",
+        "Brand Type",
+        "Global",
+        "Pronounce",
+        "Memorability",
+        "Trend",
+        "Premium",
+        "Startup",
+        "Brandability",
+        ".com",
+        "Short",
+        "Score",
+        "Risk",
+        "Stars",
+        "Value",
+    ]
+
+    df = df[columns]
+
     csv = df.to_csv(index=False).encode("utf-8-sig")
 
     st.download_button(
@@ -77,38 +98,17 @@ if generate_btn:
         mime="text/csv",
     )
 
-st.subheader("💡 أفضل الأسماء")
+    st.subheader("💡 أفضل الأسماء")
 
-columns = [
-    "AI Pick",
-    "Brand",
-    "Brand Type",
-    "Global",
-    "Pronounce",
-    "Memorability",
-    "Trend",
-    "Premium",
-    "Startup",
-    "Brandability",
-    ".com",
-    "Short",
-    "Score",
-    "Risk",
-    "Stars",
-    "Value",
-]
+    st.dataframe(
+        df,
+        use_container_width=True,
+        hide_index=True,
+    )
 
-df = df[columns]
+    st.success(f"✅ تم العثور على {len(df)} اسمًا مطابقًا للفلاتر")
 
-st.dataframe(
-    df,
-    use_container_width=True,
-    hide_index=True,
-)
-
-st.success(f"✅ تم العثور على {len(df)} اسمًا مطابقًا للفلاتر")
 st.divider()
-
 # ==========================
 # الجزء الثاني: تحليل وفحص اسم محدد
 # ==========================
