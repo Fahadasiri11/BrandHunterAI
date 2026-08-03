@@ -35,6 +35,7 @@ def process_name(name, industry):
         and len(name) <= 8
     ) else ""
 
+    print(quality)
     return {
     "AI Pick": ai_pick,
     "Brand": name,
