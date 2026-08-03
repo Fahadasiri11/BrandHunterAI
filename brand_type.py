@@ -1,5 +1,13 @@
-def detect_brand_type(name):
-    name = name.lower()
+def detect_brand_type(industry):
+    types = {
+        "AI": "🤖 AI",
+        "SaaS": "☁️ SaaS",
+        "Cybersecurity": "🛡️ Security",
+        "Finance": "💰 Finance",
+        "Healthcare": "🏥 Healthcare",
+    }
+
+    return types.get(industry, "⭐ General")
 
     ai_words = [
         "ai", "mind", "brain", "bot", "gpt",
