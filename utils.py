@@ -36,22 +36,24 @@ def process_name(name, industry):
     ) else ""
 
     return {
-        "Global": quality["Global"],
-        "Pronounce": quality["Pronounce"],
-        "Memorability": quality["Memorability"],
-        "Trend": quality["Trend"],
-        "Premium": quality["Premium"],
-        "Startup": quality["Startup"],
-        "Brandability": quality["Brandability"],
-        "AI Pick": ai_pick,
-        "Brand": name,
-        "Brand Type": brand_type,
-        ".com": domain,
-        "Short": is_short,
-        "Score": brand["score"],
-        "Risk": risk,
-        "Stars": brand["stars"],
-        "Value": f"${min_value:,} - ${max_value:,}",
+    "AI Pick": ai_pick,
+    "Brand": name,
+    "Brand Type": brand_type,
+
+    "Global": quality["Global"],
+    "Pronounce": quality["Pronounce"],
+    "Memorability": quality["Memorability"],
+    "Trend": quality["Trend"],
+    "Premium": quality["Premium"],
+    "Startup": quality["Startup"],
+    "Brandability": quality["Brandability"],
+
+    ".com": domain,
+    "Short": is_short,
+    "Score": brand["score"],
+    "Risk": risk,
+    "Stars": brand["stars"],
+    "Value": f"${min_value:,} - ${max_value:,}",
     }
 
 
