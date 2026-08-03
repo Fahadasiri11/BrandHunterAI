@@ -39,7 +39,6 @@ def process_name(name, industry):
     "AI Pick": ai_pick,
     "Brand": name,
     "Brand Type": brand_type,
-
     "Global": quality["Global"],
     "Pronounce": quality["Pronounce"],
     "Memorability": quality["Memorability"],
