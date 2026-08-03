@@ -106,8 +106,7 @@ st.dataframe(
     hide_index=True,
 )
 
-    st.success(f"✅ تم العثور على {len(df)} اسمًا مطابقًا للفلاتر")
-
+st.success(f"✅ تم العثور على {len(df)} اسمًا مطابقًا للفلاتر")
 st.divider()
 
 # ==========================
