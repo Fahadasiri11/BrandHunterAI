@@ -1,13 +1,13 @@
 def detect_brand_type(industry):
     types = {
-        "AI": "🤖 AI",
-        "SaaS": "☁️ SaaS",
-        "Cybersecurity": "🛡️ Security",
-        "Finance": "💰 Finance",
-        "Healthcare": "🏥 Healthcare",
+        "AI": "AI Platform",
+        "SaaS": "SaaS Platform",
+        "Cybersecurity": "Cybersecurity",
+        "Finance": "FinTech",
+        "Healthcare": "HealthTech",
     }
 
-    return types.get(industry, "⭐ General")
+    return types.get(industry, "General")
 
     ai_words = [
         "ai", "mind", "brain", "bot", "gpt",
