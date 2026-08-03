@@ -6,7 +6,7 @@ from brand_value import estimate_brand_value
 from concurrent.futures import ThreadPoolExecutor
 
 
-    def process_name(name, industry):
+def process_name(name, industry):
     result = check_domain(name.lower() + ".com")
     domain = "✅" if result["status"] == "Available" else "❌"
 
