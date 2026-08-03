@@ -86,7 +86,7 @@ if generate_btn:
         "Stars",
         "Value",
     ]
-
+    st.write(df.columns.tolist())
     df = df[columns]
 
     csv = df.to_csv(index=False).encode("utf-8-sig")
