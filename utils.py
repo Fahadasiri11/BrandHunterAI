@@ -6,7 +6,7 @@ from brand_value import estimate_brand_value
 from concurrent.futures import ThreadPoolExecutor
 
 
-def process_name(name):
+def process_name(name, industry):
     result = check_domain(name.lower() + ".com")
     domain = "✅" if result["status"] == "Available" else "❌"
 
@@ -47,6 +47,6 @@ def process_name(name):
     }
 
 
-def names_to_dataframe(names):
+def names_to_dataframe(names, industry):
     with ThreadPoolExecutor(max_workers=10) as executor:
-        return list(executor.map(process_name, names))
+        return list(executor.map(lambda n: process_name(n, industry), names))
