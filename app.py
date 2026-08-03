@@ -49,7 +49,7 @@ with col_btn:
 if generate_btn:
     with st.spinner("جاري توليد الأسماء وفحص النطاقات..."):
         names = generate_names(industry, 20)
-        results = names_to_dataframe(names)
+        results = names_to_dataframe(names, industry)
         results = rank_brands(results)
 
     import pandas as pd
