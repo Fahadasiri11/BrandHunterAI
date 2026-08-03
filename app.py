@@ -77,12 +77,34 @@ if generate_btn:
         mime="text/csv",
     )
 
-    st.subheader("💡 أفضل الأسماء")
-    st.dataframe(
-        df,
-        use_container_width=True,
-        hide_index=True,
-    )
+st.subheader("💡 أفضل الأسماء")
+
+columns = [
+    "AI Pick",
+    "Brand",
+    "Brand Type",
+    "Global",
+    "Pronounce",
+    "Memorability",
+    "Trend",
+    "Premium",
+    "Startup",
+    "Brandability",
+    ".com",
+    "Short",
+    "Score",
+    "Risk",
+    "Stars",
+    "Value",
+]
+
+df = df[columns]
+
+st.dataframe(
+    df,
+    use_container_width=True,
+    hide_index=True,
+)
 
     st.success(f"✅ تم العثور على {len(df)} اسمًا مطابقًا للفلاتر")
 
