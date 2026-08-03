@@ -19,7 +19,7 @@ def process_name(name):
     )
 
     is_short = "✅" if len(name) <= 8 else "❌"
-    brand_type = detect_brand_type(name)
+    brand_type = detect_brand_type(industry)
 
     if brand["score"] >= 90 and domain == "✅":
         risk = "🟢 منخفض"
