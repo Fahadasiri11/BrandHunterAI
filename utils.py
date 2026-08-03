@@ -1,3 +1,4 @@
+from brand_type import detect_brand_type
 import pandas as pd
 from domain_checker import check_domain
 from brand_score import score_brand
@@ -18,7 +19,7 @@ def process_name(name):
     )
 
     is_short = "✅" if len(name) <= 8 else "❌"
-
+    brand_type = detect_brand_type(name)
     ai_pick = "⭐" if (
         domain == "✅"
         and brand["score"] >= 90
@@ -27,7 +28,7 @@ def process_name(name):
 
     return {
         "AI Pick": ai_pick,
-        "Brand": name,
+        "Brand Type": brand_type,
         ".com": domain,
         "Short": is_short,
         "Score": brand["score"],
