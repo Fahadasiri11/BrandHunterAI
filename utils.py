@@ -21,7 +21,7 @@ def process_name(name, industry):
 
     is_short = "✅" if len(name) <= 8 else "❌"
     brand_type = detect_brand_type(industry)
-
+    quality = analyze_quality(name)
     if brand["score"] >= 90 and domain == "✅":
         risk = "🟢 منخفض"
     elif brand["score"] >= 75:
@@ -37,12 +37,12 @@ def process_name(name, industry):
 
     return {
         "Global": quality["Global"],
-        "Brandability": quality["Brandability"],
         "Pronounce": quality["Pronounce"],
         "Memorability": quality["Memorability"],
         "Trend": quality["Trend"],
         "Premium": quality["Premium"],
         "Startup": quality["Startup"],
+        "Brandability": quality["Brandability"],
         "AI Pick": ai_pick,
         "Brand": name,
         "Brand Type": brand_type,
