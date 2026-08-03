@@ -4,9 +4,10 @@ from domain_checker import check_domain
 from brand_score import score_brand
 from brand_value import estimate_brand_value
 from concurrent.futures import ThreadPoolExecutor
-
+from quality import analyze_quality
 
 def process_name(name, industry):
+    quality = analyze_quality(name)
     result = check_domain(name.lower() + ".com")
     domain = "✅" if result["status"] == "Available" else "❌"
 
@@ -35,6 +36,12 @@ def process_name(name, industry):
     ) else ""
 
     return {
+        "Global": quality["Global"],
+        "Pronounce": quality["Pronounce"],
+        "Memorability": quality["Memorability"],
+        "Trend": quality["Trend"],
+        "Premium": quality["Premium"],
+        "Startup": quality["Startup"],
         "AI Pick": ai_pick,
         "Brand": name,
         "Brand Type": brand_type,
