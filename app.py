@@ -100,11 +100,34 @@ if generate_btn:
 
     st.subheader("💡 أفضل الأسماء")
 
-    st.dataframe(
-        df,
-        use_container_width=True,
-        hide_index=True,
-    )
+for _, row in df.iterrows():
+
+    with st.container(border=True):
+
+        st.markdown(f"## ⭐ {row['Brand']}")
+
+        c1, c2 = st.columns(2)
+
+        with c1:
+            st.write(f"**Score:** {row['Score']}/100")
+            st.write(f"**Type:** {row['Brand Type']}")
+            st.write(f"**Risk:** {row['Risk']}")
+            st.write(f"**Stars:** {row['Stars']}")
+
+        with c2:
+            st.write(f"**Domain:** {row['.com']}")
+            st.write(f"**Value:** {row['Value']}")
+            st.write(f"**Brandability:** {row['Brandability']}")
+            st.write(f"{row['Premium']} {row['Startup']} {row['Trend']}")
+
+        with st.expander("🔍 عرض التقرير الكامل"):
+
+            st.write("🌍 Global:", row["Global"])
+            st.write("🗣 Pronounce:", row["Pronounce"])
+            st.write("🧠 Memorability:", row["Memorability"])
+            st.write("🔥 Trend:", row["Trend"])
+            st.write("💎 Premium:", row["Premium"])
+            st.write("🚀 Startup:", row["Startup"])
 
     st.success(f"✅ تم العثور على {len(df)} اسمًا مطابقًا للفلاتر")
 
