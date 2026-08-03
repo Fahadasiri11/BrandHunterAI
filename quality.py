@@ -13,14 +13,15 @@ def analyze_quality(name):
     global_name = "🌍" if len(name) <= 10 else "⚠️"
 
     trend_words = [
-    "ai", "neo", "nova", "sync", "flow",
-    "cloud", "gen", "labs", "verse",
-    "core", "logic", "mind", "stack"
-]
+        "ai", "neo", "nova", "sync", "flow",
+        "cloud", "gen", "labs", "verse",
+        "core", "logic", "mind", "stack"
+    ]
 
-trend = "🔥" if any(
-    x in name.lower() for x in trend_words
-) else "⭐"
+    trend = "🔥" if any(
+        x in name.lower() for x in trend_words
+    ) else "⭐"
+
     premium = "💎" if (
         score >= 90
         and len(name) <= 8
@@ -34,13 +35,14 @@ trend = "🔥" if any(
     ) else ""
 
     if score >= 95:
-    brandability = "A+"
+        brandability = "A+"
     elif score >= 85:
-    brandability = "A"
+        brandability = "A"
     elif score >= 75:
-    brandability = "B"
+        brandability = "B"
     else:
-    brandability = "C"
+        brandability = "C"
+
     return {
         "Global": global_name,
         "Pronounce": pronounce,
