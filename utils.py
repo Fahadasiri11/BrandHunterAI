@@ -20,12 +20,14 @@ def process_name(name):
 
     is_short = "✅" if len(name) <= 8 else "❌"
     brand_type = detect_brand_type(name)
+
     if brand["score"] >= 90 and domain == "✅":
-    risk = "🟢 منخفض"
-elif brand["score"] >= 75:
-    risk = "🟡 متوسط"
-else:
-    risk = "🔴 مرتفع"
+        risk = "🟢 منخفض"
+    elif brand["score"] >= 75:
+        risk = "🟡 متوسط"
+    else:
+        risk = "🔴 مرتفع"
+
     ai_pick = "⭐" if (
         domain == "✅"
         and brand["score"] >= 90
@@ -34,6 +36,7 @@ else:
 
     return {
         "AI Pick": ai_pick,
+        "Brand": name,
         "Brand Type": brand_type,
         ".com": domain,
         "Short": is_short,
