@@ -37,6 +37,7 @@ def process_name(name, industry):
 
     return {
         "Global": quality["Global"],
+        "Brandability": quality["Brandability"],
         "Pronounce": quality["Pronounce"],
         "Memorability": quality["Memorability"],
         "Trend": quality["Trend"],
